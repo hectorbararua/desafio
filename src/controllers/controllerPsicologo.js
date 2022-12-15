@@ -1,4 +1,5 @@
 const Psicologo = require('../models/Psicologo')
+const bcrypt = require('bcryptjs')
 
 const controllerPsicologo = {
   listarPsicologoAll: async (req, res) => {
@@ -29,10 +30,13 @@ const controllerPsicologo = {
 
       if (!email || !senha)
         throw new Error('E-mail ou senha inválido, verifique e tente novamente')
+
+      const newSenha = bcrypt.hashSync(senha, 10)
+
       const novoPsicologo = await Psicologo.create({
         nome,
         email,
-        senha,
+        senha: newSenha,
         apresentacao
       })
 
