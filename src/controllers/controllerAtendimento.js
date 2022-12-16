@@ -26,7 +26,6 @@ const controllerAtendimento = {
 
   cadastrarAtendimento: async (req, res) => {
     try {
-      console.log(req.user)
       const psicologoId = req.user.id
       const { pacienteId, dataAtendimento, observacao } = req.body
       const cadastrarAtendimento = await Atendimento.create({
