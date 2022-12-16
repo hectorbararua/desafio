@@ -8,6 +8,7 @@ const authLoginValidation = require('../validations/auth/login')
 const authAtendimentoValidation = require('../validations/Atendimento/create')
 const controllerAtendimento = require('../controllers/controllerAtendimento')
 const auth = require('../Middlewares/auth')
+const verifyToken = require('../Middlewares/verifyToken')
 
 const routes = express.Router()
 
@@ -40,6 +41,7 @@ routes.post(
   '/atendimento/cadastrar',
   authAtendimentoValidation,
   auth,
+  verifyToken,
   controllerAtendimento.cadastrarAtendimento
 )
 
